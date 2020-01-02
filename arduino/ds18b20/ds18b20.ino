@@ -7,7 +7,7 @@
 // The DallasTemperature library can do all this work for you!
 // http://milesburton.com/Dallas_Temperature_Control_Library
 
-OneWire  ds(10);  // on pin 10 (a 4.7K resistor is necessary)
+OneWire  ds(2);  // on pin 2 (a 4.7K resistor is necessary)
 
 void setup(void) {
   Serial.begin(9600);
@@ -22,37 +22,37 @@ void loop(void) {
   float celsius, fahrenheit;
   
   if ( !ds.search(addr)) {
-    Serial.println("No more addresses.");
-    Serial.println();
+   // Serial.println("No more addresses.");
+   // Serial.println();
     ds.reset_search();
     delay(250);
     return;
   }
-  
+  /*
   Serial.print("ROM =");
   for( i = 0; i < 8; i++) {
     Serial.write(' ');
     Serial.print(addr[i], HEX);
   }
-
+*/
   if (OneWire::crc8(addr, 7) != addr[7]) {
       Serial.println("CRC is not valid!");
       return;
   }
-  Serial.println();
+  //Serial.println();
  
   // the first ROM byte indicates which chip
   switch (addr[0]) {
     case 0x10:
-      Serial.println("  Chip = DS18S20");  // or old DS1820
+      //Serial.println("  Chip = DS18S20");  // or old DS1820
       type_s = 1;
       break;
     case 0x28:
-      Serial.println("  Chip = DS18B20");
+      //Serial.println("  Chip = DS18B20");
       type_s = 0;
       break;
     case 0x22:
-      Serial.println("  Chip = DS1822");
+      //Serial.println("  Chip = DS1822");
       type_s = 0;
       break;
     default:
@@ -71,17 +71,17 @@ void loop(void) {
   ds.select(addr);    
   ds.write(0xBE);         // Read Scratchpad
 
-  Serial.print("  Data = ");
-  Serial.print(present, HEX);
-  Serial.print(" ");
+  //Serial.print("  Data = ");
+  //Serial.print(present, HEX);
+  //Serial.print(" ");
   for ( i = 0; i < 9; i++) {           // we need 9 bytes
     data[i] = ds.read();
-    Serial.print(data[i], HEX);
-    Serial.print(" ");
+    //Serial.print(data[i], HEX);
+    //Serial.print(" ");
   }
-  Serial.print(" CRC=");
-  Serial.print(OneWire::crc8(data, 8), HEX);
-  Serial.println();
+  //Serial.print(" CRC=");
+  //Serial.print(OneWire::crc8(data, 8), HEX);
+  //Serial.println();
 
   // Convert the data to actual temperature
   // because the result is a 16 bit signed integer, it should
@@ -103,10 +103,11 @@ void loop(void) {
     //// default is 12 bit resolution, 750 ms conversion time
   }
   celsius = (float)raw / 16.0;
-  fahrenheit = celsius * 1.8 + 32.0;
-  Serial.print("  Temperature = ");
-  Serial.print(celsius);
-  Serial.print(" Celsius, ");
-  Serial.print(fahrenheit);
-  Serial.println(" Fahrenheit");
+  //fahrenheit = celsius * 1.8 + 32.0;
+  //Serial.print("  Temperature = ");
+  Serial.println(celsius);
+  //Serial.print(" Celsius, ");
+  //Serial.print(fahrenheit);
+  //Serial.println(" Fahrenheit");
+  delay(60000);
 }
