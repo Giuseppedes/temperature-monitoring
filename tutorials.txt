@@ -35,3 +35,11 @@ How to Install PHPMyAdmin on the Raspberry Pi
  by Emmet
 
 https://pimylifeup.com/raspberry-pi-phpmyadmin/
+
+---------------------------------------------------------------------
+
+Install Node.js and Npm on Raspberry Pi
+By biskis - CC BY-NC-SA
+
+https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/
+

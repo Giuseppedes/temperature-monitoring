@@ -98,4 +98,19 @@ INSTALL PHPMYADMIN
 - (optional - configure NGINX) sudo ln -s /usr/share/phpmyadmin /var/www/html
 
 
+INSTALL NODE.JS
+
+- wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-armv7l.tar.xz
+
+- tar -xf node-v12.14.0-linux-armv7l.tar.xz
+
+- cd node-v12.14.0-linux-armv7l/
+
+- sudo cp -R * /usr/local/
+
+- Check:
+	
+	node -v
+	npm -v
+
 
