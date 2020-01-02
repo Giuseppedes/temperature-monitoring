@@ -49,6 +49,11 @@ INSTALL APACHE
 - sudo service vsftpd restart
 
 
+ROUTER SETTINGS - PORT FORWARDING
+
+- remember to open port 80 in order to enable access to the server through the internet
+
+
 INSTALL DATABASE
 
 - sudo apt install mariadb-server
