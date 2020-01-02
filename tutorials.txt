@@ -1,0 +1,31 @@
+Tinkernut - Weekend Hacker: Make A Raspberry Pi Web Server
+
+https://www.youtube.com/watch?v=WgcNBjIJNYs
+
+---------------------------------------------------------------------
+
+DIY Arduino and Raspberry Pi Weather Station and Web Server
+By LukasCDesigns - CC BY-NC-SA
+
+https://www.instructables.com/id/DIY-Arduino-and-Raspberry-Pi-Weather-Station-and-W/
+
+---------------------------------------------------------------------
+
+Arduino and Pi in Harmony - As a Sensor Web Server!
+By jedhodson -- CC BY-NC
+
+https://www.instructables.com/id/Arduino-and-Pi-in-harmony-As-a-sensor-web-server/
+
+---------------------------------------------------------------------
+
+Setup a Raspberry Pi MYSQL Database
+ by Emmet
+
+https://pimylifeup.com/raspberry-pi-mysql/
+
+---------------------------------------------------------------------
+
+How to Install PHPMyAdmin on the Raspberry Pi
+ by Emmet
+
+https://pimylifeup.com/raspberry-pi-phpmyadmin/
