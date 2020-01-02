@@ -4,6 +4,12 @@ https://www.youtube.com/watch?v=WgcNBjIJNYs
 
 ---------------------------------------------------------------------
 
+DS18B20 (Digital Temperature Sensor) and Arduino © GPL3+
+
+https://create.arduino.cc/projecthub/TheGadgetBoy/ds18b20-digital-temperature-sensor-and-arduino-9cc806
+
+---------------------------------------------------------------------
+
 DIY Arduino and Raspberry Pi Weather Station and Web Server
 By LukasCDesigns - CC BY-NC-SA
 
