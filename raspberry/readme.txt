@@ -1,0 +1,96 @@
+
+
+RASPBERRY SET UP
+
+- Install Raspbian from https://www.raspberrypi.org/downloads/
+
+- Default password is 'raspbian', change it with the command: 
+
+	sudo passwd pi
+
+- Set password for root:
+	
+	sudo passwd root
+
+- Enable ssh (https://www.raspberrypi.org/documentation/remote-access/ssh/):
+
+	Launch Raspberry Pi Configuration from the Preferences menu
+	Navigate to the Interfaces tab
+	Select Enabled next to SSH
+	Click OK
+
+INSTALL APACHE
+
+- sudo apt-get update
+
+- sudo apt-get upgrade
+
+- sudo apt-get install apache2 libapache2-mod-wsgi python-setuptools python-flask python-serial
+
+- sudo nano /etc/apache2/sites-enabled/000-default -> change All to AllowOverride:
+
+	<Directory /var/www/>
+		...
+		AllowOverride All
+		...
+	</Directory>
+
+- sudo chown -R pi /var/www
+
+- sudo apt-get install vsftpd
+
+- sudo nano /etc/vsftpd.conf -> set:
+	
+	anonymoys_enable=No
+	local_enable=Yes
+	write_enable=Yes
+	force_dot_files=Yes
+
+- sudo service vsftpd restart
+
+
+INSTALL DATABASE
+
+- sudo apt install mariadb-server
+
+- sudo mysql_secure_installation (Answer Yes to all the prompts)
+
+- sudo mysql -u root -p
+
+- CREATE DATABASE exampledb;
+
+- CREATE USER 'exampleuser'@'localhost' IDENTIFIED BY 'password';
+
+- CREATE USER 'exampleuser'@'localhost' IDENTIFIED BY 'pimylifeup';
+
+- FLUSH PRIVILEGES;
+
+- quit
+
+- (optional - MySQL connector for PHP) sudo apt install php-mysql
+
+- Install mysql connector for python 3 with the command:
+	
+	pip3 install mysql-connector-python-rf 
+
+
+INSTALL PHPMYADMIN
+
+- sudo apt install phpmyadmin (Yes to prompt and set phpmyadmin user and password)
+
+- sudo mysql -u root -p
+
+- GRANT ALL PRIVILEGES ON *.* TO 'username'@'localhost' IDENTIFIED BY 'password';
+
+- quit
+
+- sudo nano /etc/apache2/apache2.conf -> add to the bottom of the file:
+
+	Include /etc/phpmyadmin/apache.conf
+
+- sudo service apache2 restart
+
+- (optional - configure NGINX) sudo ln -s /usr/share/phpmyadmin /var/www/html
+
+
+
