@@ -13,7 +13,7 @@ mydb = mysql.connector.connect(
     database="TEMPERATURE"
 )
 mycursor = mydb.cursor()
-sql = "INSERT INTO HISTORY (temperature) VALUES (%s)"
+sql = "INSERT INTO HISTORY (temperature, session_id) VALUES (%s, (select max(ID) from SESSIONS))"
 
 
 def tempUpdate() :  
@@ -27,7 +27,7 @@ def tempUpdate() :
     
     # write index.html 
     fob = open('/var/www/html/index.html', 'w')  
-    fob.write('<html><body><h1>Temperatura rilevata:' + temperatureString + 'at'+ time   .strftime('%l:%M%p on %b %d, %Y') + '</h1></body></html>')
+    fob.write('<html><body><h1>Temperature:' + temperatureString + 'at'+ time   .strftime('%l:%M%p on %b %d, %Y') + '</h1></body></html>')
     fob.close()
     
 def loopTempUpdate() :

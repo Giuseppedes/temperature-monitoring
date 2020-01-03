@@ -66,8 +66,6 @@ INSTALL DATABASE
 
 - CREATE USER 'exampleuser'@'localhost' IDENTIFIED BY 'password';
 
-- CREATE USER 'exampleuser'@'localhost' IDENTIFIED BY 'pimylifeup';
-
 - FLUSH PRIVILEGES;
 
 - quit
