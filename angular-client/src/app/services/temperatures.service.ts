@@ -14,10 +14,10 @@ export class TemperaturesService {
   hostIp;
 
   constructor(private http: HttpClient) {
-    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
   }
 
   getAll() {
+    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
     return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
   }
 
