@@ -25,10 +25,10 @@ def tempUpdate() :
     mycursor.execute(sql, val)
     mydb.commit()
     
-    # write index.html 
-    fob = open('/var/www/html/index.html', 'w')  
-    fob.write('<html><body><h1>Temperature:' + temperatureString + 'at'+ time   .strftime('%l:%M%p on %b %d, %Y') + '</h1></body></html>')
-    fob.close()
+    ##  write index.html
+    # fob = open('/var/www/html/index.html', 'w')
+    # fob.write('<html><body><h1>Temperature:' + temperatureString + 'at'+ time   .strftime('%l:%M%p on %b %d, %Y') + '</h1></body></html>')
+    # fob.close()
     
 def loopTempUpdate() :
     while 1 :
