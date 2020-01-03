@@ -16,7 +16,7 @@ const pool = mariadb.createPool({
 
 app.get('/api/temperatures', (req, res) => {
    pool
-       .query("SELECT * FROM HISTORY")
+       .query("SELECT id, time, temperature FROM HISTORY WHERE SESSION_ID = (SELECT MAX(ID) FROM SESSIONS)")
        .then(rows => {
           res.send(rows);
        })
