@@ -10,6 +10,7 @@ import { LastTemperatureComponent } from './last-temperature/last-temperature.co
 import { HttpClientModule } from '@angular/common/http';
 import { TemperaturesService } from './services/temperatures.service';
 import {FormsModule} from '@angular/forms';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {FormsModule} from '@angular/forms';
     FormsModule
   ],
   providers: [
-    TemperaturesService
+    TemperaturesService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
