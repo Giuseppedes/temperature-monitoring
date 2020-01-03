@@ -1,0 +1,38 @@
+<div class="container">
+  <h2>Last Temperature: <span [ngClass]="temperatureColor">{{lastTemperature}} °C</span></h2>
+</div>
+<br>
+<div *ngIf="temperatureTooLow" class="container alert alert-primary" role="alert">
+  Difference between actual temperature and target: {{temperatureDifference | number: '1.2-2'}}
+</div>
+<div *ngIf="temperatureTooHigh" class=" container alert alert-danger" role="alert">
+  Difference between actual temperature and target: {{temperatureDifference | number: '1.2-2'}}
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-5 mt-sm-4 mt-md-0">
+      <label for="targetTemperature">Target Temperature</label>
+      <input type="number" class="form-control" id="targetTemperature" placeholder="Temperature"
+             [(ngModel)]="targetTemperature" name="targetTemperature">
+    </div>
+    <div class="col-sm-12 col-md-5 mt-sm-4 mt-md-0">
+      <label for="maxDifferenceAllowed">Max Difference Allowed</label>
+      <input type="number" class="form-control" id="maxDifferenceAllowed" placeholder="Difference"
+             [(ngModel)]="maxDifferenceAllowed" name="maxDifferenceAllowed">
+    </div>
+    <div class="col-sm-12 col-md-2 mt-sm-4 mt-md-0">
+      <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="isSoundEnabled"
+               [(ngModel)]="isSoundEnabled" name="isSoundEnabled">
+        <label class="custom-control-label" for="isSoundEnabled" >Sound</label>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col text-center">
+      <button class="btn btn-dark " (click)="checkTemperature()">Run</button>
+    </div>
+  </div>
+</div>
+
