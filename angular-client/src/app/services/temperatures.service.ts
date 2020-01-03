@@ -11,10 +11,14 @@ export class TemperaturesService {
 
   temperatureListObservable = new Subject<Temperature[]>();
 
-  constructor(private http: HttpClient) { }
+  hostIp;
+
+  constructor(private http: HttpClient) {
+    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
+  }
 
   getAll() {
-    return this.http.get<Temperature[]>(environment.temperaturesEndpoint);
+    return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
   }
 
   refresh() {
