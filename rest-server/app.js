@@ -1,7 +1,10 @@
 const express = require('express');
 const mariadb = require('mariadb');
+const cors = require('cors');
 
 const app = express();
+
+app.use(cors());
 
 const pool = mariadb.createPool({
    host: '127.0.0.1',
