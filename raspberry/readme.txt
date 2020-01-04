@@ -114,3 +114,24 @@ INSTALL NODE.JS
 	npm -v
 
 
+(optional) SOLVE PHPMYADMIN WARNING 613
+Do this step only if you see this error in phpmyadmin: 
+“Warning in ./libraries/sql.lib.php#613 count(): Parameter must be an array or an object that implements Countable”
+
+- sudo cp /usr/share/phpmyadmin/libraries/sql.lib.php /usr/share/phpmyadmin/libraries/sql.lib.php.bak
+
+- sudo nano /usr/share/phpmyadmin/libraries/sql.lib.php
+
+- find this strting with ctrl+w
+
+	(count($analyzed_sql_results[‘select_expr’] == 1)
+
+- replace with (there are 2 more round brackets):
+
+	((count($analyzed_sql_results[‘select_expr’]) == 1)
+
+- save and exit with ctrl-x and restart the web server:
+
+	sudo systemctl restart apache2 
+
+

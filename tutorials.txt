@@ -43,3 +43,9 @@ By biskis - CC BY-NC-SA
 
 https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/
 
+---------------------------------------------------------------------
+
+PhpMyAdmin & PHP 7.2 – Eccezione #613.
+
+https://www.marcotomassini.it/phpmyadmin-php72-eccezione-613-sql-lib/
+
