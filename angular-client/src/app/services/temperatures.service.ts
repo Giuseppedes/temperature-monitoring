@@ -23,7 +23,6 @@ export class TemperaturesService {
 
   refresh() {
     this.getAll().subscribe(response => {
-      console.log(response);
       this.temperatureListObservable.next(response);
       this.loop();
     });

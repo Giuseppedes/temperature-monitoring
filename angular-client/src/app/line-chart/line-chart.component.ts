@@ -69,9 +69,6 @@ export class LineChartComponent implements OnInit {
   getDaysBetweenDates(startDate: Date, endDate: Date) {
     const startDateBis = new Date(startDate);
     const endDateBis = new Date(endDate);
-    console.log((endDateBis.getTime() - startDateBis.getTime()));
-    console.log((endDateBis.getTime() - startDateBis.getTime()) / (1000 * 60 * 60 * 24));
-
     return (endDateBis.getTime() - startDateBis.getTime());
   }
 
