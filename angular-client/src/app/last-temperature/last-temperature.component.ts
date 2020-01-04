@@ -11,6 +11,7 @@ export class LastTemperatureComponent implements OnInit {
 
   temperatureList: Temperature[];
   lastTemperature;
+  lastTemperatureTime;
 
   targetTemperature;
   maxDifferenceAllowed;
@@ -29,7 +30,7 @@ export class LastTemperatureComponent implements OnInit {
     this.temperatureTooLow = false;
 
     this.alarmSound = new Audio();
-    this.alarmSound.src = '../../../assets/alarm.wav';
+    this.alarmSound.src = './assets/alarm.wav';
 
   }
 
@@ -38,6 +39,7 @@ export class LastTemperatureComponent implements OnInit {
     this.temperaturesService.temperatureListObservable.subscribe(value => {
       this.temperatureList = value;
       this.lastTemperature = this.temperatureList[this.temperatureList.length - 1].temperature;
+      this.lastTemperatureTime = this.temperatureList[this.temperatureList.length - 1].time;
       this.checkTemperature();
     });
   }

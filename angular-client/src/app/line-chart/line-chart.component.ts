@@ -55,18 +55,33 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit() {
     this.temperaturesService.temperatureListObservable.subscribe(value => {
+      if (this.getDaysBetweenDates(value[0].time, value[value.length - 1].time) > (1000 * 60 * 60 * 24) ) {
+        // difference between first and last measurement is more then one day
+        this.dateFormat = 'dd/MM/yyyy HH:mm';
+      } else {
+        this.dateFormat = 'HH:mm';
+      }
       this.lineChartData = [{ data: value.map(element => element.temperature), label: 'Temperature ( °C )'}];
       this.lineChartLabels = value.map(element => this.datePipe.transform( element.time, this.dateFormat));
     });
   }
 
+  getDaysBetweenDates(startDate: Date, endDate: Date) {
+    const startDateBis = new Date(startDate);
+    const endDateBis = new Date(endDate);
+    console.log((endDateBis.getTime() - startDateBis.getTime()));
+    console.log((endDateBis.getTime() - startDateBis.getTime()) / (1000 * 60 * 60 * 24));
+
+    return (endDateBis.getTime() - startDateBis.getTime());
+  }
+
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
+    // console.log(event, active);
   }
 
 

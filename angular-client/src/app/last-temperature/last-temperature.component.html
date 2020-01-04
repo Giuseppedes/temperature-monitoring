@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Last Temperature: <span [ngClass]="temperatureColor">{{lastTemperature}} °C</span></h2>
+  <h2>Last Temperature: <span [ngClass]="temperatureColor">{{lastTemperature}} °C</span> ({{lastTemperatureTime | date: 'dd/MM/yyyy HH:mm'}})</h2>
 </div>
 <br>
 <div *ngIf="temperatureTooLow" class="container alert alert-primary" role="alert">
