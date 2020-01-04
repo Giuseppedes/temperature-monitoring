@@ -51,7 +51,9 @@ INSTALL APACHE
 
 ROUTER SETTINGS - PORT FORWARDING
 
-- remember to open port 80 in order to enable access to the server through the internet
+- remember to open port 80 in order to enable access to the Apache server through the internet
+
+- open port 3000 in order to enable access to the node.js server through the internet
 
 
 INSTALL DATABASE
