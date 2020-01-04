@@ -35,7 +35,7 @@ export class LastTemperatureComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.temperaturesService.refresh();
+    this.temperaturesService.refreshAndLoop();
     this.temperaturesService.temperatureListObservable.subscribe(value => {
       this.temperatureList = value;
       this.lastTemperature = this.temperatureList[this.temperatureList.length - 1].temperature;

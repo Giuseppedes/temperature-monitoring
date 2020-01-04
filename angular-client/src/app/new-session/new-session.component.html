@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col text-center">
+      <button class="btn btn-dark " (click)="onNewSession()">Start New Session</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="isNewSessionRequested" class="container mt-3">
+  <div class="row">
+    <div class=" col alert alert-danger" role="alert">
+      Are you shure you want to start a new session?
+      <br>
+      All the data displayed at the moment will be erased.
+    </div>
+    <div class="col text-center">
+      <button class="btn btn-danger" (click)="onNewSessionConfirmed()">Confirm New Session</button>
+    </div>
+  </div>
+  <div *ngIf="isNewSessionConfirmed" class="container alert alert-primary" role="alert">
+    New Session Requested!
+  </div>
+</div>

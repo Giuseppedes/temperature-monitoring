@@ -21,7 +21,7 @@ export class TemperaturesService {
     return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
   }
 
-  refresh() {
+  refreshAndLoop() {
     this.getAll().subscribe(response => {
       this.temperatureListObservable.next(response);
       this.loop();
@@ -30,7 +30,7 @@ export class TemperaturesService {
 
   loop() {
     setTimeout(() => {
-      this.refresh();
+      this.refreshAndLoop();
     }, 60000);  // milliseconds
   }
 

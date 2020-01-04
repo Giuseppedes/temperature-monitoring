@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TemperaturesService } from './services/temperatures.service';
 import {FormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
+import { NewSessionComponent } from './new-session/new-session.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {DatePipe} from '@angular/common';
     LineChartComponent,
     HeaderComponent,
     FooterComponent,
-    LastTemperatureComponent
+    LastTemperatureComponent,
+    NewSessionComponent
   ],
   imports: [
     BrowserModule,

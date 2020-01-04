@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   // temperaturesEndpoint: 'localhost:3000/api/temperatures',
   temperaturesEndpoint: ':3000/api/temperatures',
+  newSessionEndpoint: ':3000/api/new-session',
 };
 
 /*
