@@ -45,6 +45,13 @@ https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/
 
 ---------------------------------------------------------------------
 
+Raspberry Pi: Launch Python Script on Startup
+By scottkildall CC BY-NC-SA
+
+https://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/
+
+---------------------------------------------------------------------
+
 PhpMyAdmin & PHP 7.2 – Eccezione #613.
 
 https://www.marcotomassini.it/phpmyadmin-php72-eccezione-613-sql-lib/

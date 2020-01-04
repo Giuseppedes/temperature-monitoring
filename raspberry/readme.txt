@@ -78,6 +78,8 @@ INSTALL DATABASE
 	
 	pip3 install mysql-connector-python-rf 
 
+	(this seems to install the connector only for pi user -> "su root" and run again)
+
 
 INSTALL PHPMYADMIN
 
@@ -135,3 +137,11 @@ Do this step only if you see this error in phpmyadmin:
 	sudo systemctl restart apache2 
 
 
+START SERVICES ON BOOT
+
+- create a crontab with the command 'crontab -e' and append: 
+
+	@reboot sleep 60 && sh /home/pi/temperature-monitoring/schedule/launcher-py.sh >/home/pi/temperature-monitoring/schedule/logs/py.log 2>&1
+	@reboot sh /home/pi/temperature-monitoring/schedule/launcher-node.sh >/home/pi/temperature-monitoring/schedule/logs/node.log 2>&1
+
+(need to sleep 60 seconds in order to allow the startup of the database):
