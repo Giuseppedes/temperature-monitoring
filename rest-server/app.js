@@ -7,11 +7,11 @@ const app = express();
 app.use(cors());
 
 const pool = mariadb.createPool({
-   host: '127.0.0.1',
-   user:'temperature',
-   password: 'temperature',
-   database: 'TEMPERATURE',
-   connectionLimit: 5
+    host: '127.0.0.1',
+    user:'temperature',
+    password: 'temperature',
+    database: 'TEMPERATURE',
+    connectionLimit: 5
 });
 
 //return the temperatures of the last session
