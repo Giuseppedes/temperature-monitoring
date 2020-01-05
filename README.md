@@ -88,33 +88,37 @@ Compile and load [arduino/ds18b20/ds18b20.ino](https://github.com/Giuseppedes/te
 
 - Run:
 
-
-    sudo apt-get update
-    sudo apt-get upgrade
-    sudo apt-get install apache2 libapache2-mod-wsgi python-setuptools python-flask python-serial
+```sh
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install apache2 libapache2-mod-wsgi python-setuptools python-flask python-serial
+```
 
 - `sudo nano /etc/apache2/sites-enabled/000-default` --> set 'All' to 'AllowOverride':
 
-
+```xml
      <Directory /var/www/>
         [...]
         AllowOverride All
         [...]
     </Directory>
+```
 
 - Enable FTP server. After this step you will be able to load files using FTP:
 
-
-    sudo chown -R pi /var/www
-    sudo apt-get install vsftpd
+```sh
+sudo chown -R pi /var/www
+sudo apt-get install vsftpd
+```
 
 - `sudo nano /etc/vsftpd.conf` --> set:
     
-
+```
     anonymoys_enable=No
     local_enable=Yes
     write_enable=Yes
     force_dot_files=Yes
+```
 
 - `sudo service vsftpd restart`
 
@@ -130,11 +134,12 @@ Compile and load [arduino/ds18b20/ds18b20.ino](https://github.com/Giuseppedes/te
 
     `sudo mysql -u root -p`
 
-
+```sql
     CREATE DATABASE TEMPERATURE;
     CREATE USER 'temperature'@'localhost' IDENTIFIED BY 'temperature';
     FLUSH PRIVILEGES;
     quit
+```
 
 - (optional - MySQL connector for PHP) `sudo apt install php-mysql`
 
@@ -155,9 +160,10 @@ Compile and load [arduino/ds18b20/ds18b20.ino](https://github.com/Giuseppedes/te
 
 - `sudo mysql -u root -p`
 
-
+```sql
     GRANT ALL PRIVILEGES ON *.* TO 'phpmyadmin'@'localhost' IDENTIFIED BY 'phpmyadmin';
     quit
+```
 
 - `sudo nano /etc/apache2/apache2.conf` --> add to the bottom of the file:
 
@@ -174,11 +180,12 @@ Compile and load [arduino/ds18b20/ds18b20.ino](https://github.com/Giuseppedes/te
 
 - Install Node.js: 
 
-
+```sh
     wget https://nodejs.org/dist/v12.14.0/node-v12.14.0-linux-armv7l.tar.xz
     tar -xf node-v12.14.0-linux-armv7l.tar.xz
     cd node-v12.14.0-linux-armv7l/
     sudo cp -R * /usr/local/
+```
 
 - Check:
     
@@ -216,9 +223,10 @@ Do this step only if you see this error in phpmyadmin:
 
 - create a crontab with the command `crontab -e` and append: 
 
-
+```
     @reboot sleep 60 && sh /home/pi/temperature-monitoring/schedule/launcher-py.sh >/home/pi/temperature-monitoring/schedule/logs/py.log 2>&1
     @reboot sh /home/pi/temperature-monitoring/schedule/launcher-node.sh >/home/pi/temperature-monitoring/schedule/logs/node.log 2>&1
+```
 
 (need to sleep 60 seconds in order to allow the startup of the database)
 
