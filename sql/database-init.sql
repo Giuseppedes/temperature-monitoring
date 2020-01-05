@@ -13,7 +13,7 @@ SET time_zone = "+00:00";
 -- Database: `TEMPERATURE`
 --
 
-CREATE DATABASE TEMPERATURE;
+-- CREATE DATABASE TEMPERATURE;
 
 --
 -- Struttura della tabella `SESSIONS`
