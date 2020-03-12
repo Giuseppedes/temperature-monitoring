@@ -18,6 +18,10 @@ export class TemperaturesService {
 
   getAll() {
     this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
+    // remove port number
+    if (this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5) > 0) {
+      this.hostIp = this.hostIp.substring(0, this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5));
+    }
     return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
   }
 
