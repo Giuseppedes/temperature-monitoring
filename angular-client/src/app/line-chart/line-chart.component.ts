@@ -1,9 +1,9 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import {BaseChartDirective, Color, Label} from 'ng2-charts';
 import {ChartDataSets, ChartOptions} from 'chart.js';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import {TemperaturesService} from '../services/temperatures.service';
-import {DatePipe} from '@angular/common';
+import {DatePipe, isPlatformBrowser} from '@angular/common';
 
 @Component({
   selector: 'app-line-chart',
@@ -11,6 +11,8 @@ import {DatePipe} from '@angular/common';
   styleUrls: ['./line-chart.component.css']
 })
 export class LineChartComponent implements OnInit {
+
+  isBrowser;
 
   public lineChartData: ChartDataSets[] = [
     { data: [], label: 'Temperature ( °C )' },
@@ -49,21 +51,24 @@ export class LineChartComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
 
-  constructor(private temperaturesService: TemperaturesService, private datePipe: DatePipe) {
+  constructor(private temperaturesService: TemperaturesService, private datePipe: DatePipe, @Inject(PLATFORM_ID) private platformId: any) {
     this.dateFormat = 'dd/MM/yyyy HH:mm';
   }
 
   ngOnInit() {
-    this.temperaturesService.temperatureListObservable.subscribe(value => {
-      if (this.getDaysBetweenDates(value[0].time, value[value.length - 1].time) > (1000 * 60 * 60 * 24) ) {
-        // difference between first and last measurement is more then one day
-        this.dateFormat = 'dd/MM/yyyy HH:mm';
-      } else {
-        this.dateFormat = 'HH:mm';
-      }
-      this.lineChartData = [{ data: value.map(element => element.temperature), label: 'Temperature ( °C )'}];
-      this.lineChartLabels = value.map(element => this.datePipe.transform( element.time, this.dateFormat));
-    });
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    if (this.isBrowser) {
+      this.temperaturesService.temperatureListObservable.subscribe(value => {
+        if (this.getDaysBetweenDates(value[0].time, value[value.length - 1].time) > (1000 * 60 * 60 * 24) ) {
+          // difference between first and last measurement is more then one day
+          this.dateFormat = 'dd/MM/yyyy HH:mm';
+        } else {
+          this.dateFormat = 'HH:mm';
+        }
+        this.lineChartData = [{ data: value.map(element => element.temperature), label: 'Temperature ( °C )'}];
+        this.lineChartLabels = value.map(element => this.datePipe.transform( element.time, this.dateFormat));
+      }, (error) => {console.log(error)});
+    }
   }
 
   getDaysBetweenDates(startDate: Date, endDate: Date) {

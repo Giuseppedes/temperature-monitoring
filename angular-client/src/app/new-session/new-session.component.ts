@@ -30,7 +30,7 @@ export class NewSessionComponent implements OnInit {
     this.sessionService.newSession().subscribe(res => {
       this.isNewSessionConfirmed = false;
       // TODO immediately clear old temperature list.
-    });
+    }, (error) => {console.log(error)});
   }
 
 }

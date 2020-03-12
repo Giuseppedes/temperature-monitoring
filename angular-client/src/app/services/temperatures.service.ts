@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Inject, Injectable, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Temperature} from '../models/temperature';
@@ -11,26 +11,24 @@ export class TemperaturesService {
 
   temperatureListObservable = new Subject<Temperature[]>();
 
-  hostIp;
-
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, @Inject(PLATFORM_ID) private platformId: any) {
   }
 
-  getAll() {
-    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
-    return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
+  getAll(hostIp) {
+    console.log('this.hostIp: ' + hostIp);
+    return this.http.get<Temperature[]>(hostIp + environment.temperaturesEndpoint);
   }
 
-  refreshAndLoop() {
-    this.getAll().subscribe(response => {
+  refreshAndLoop(hostIp) {
+    this.getAll(hostIp).subscribe(response => {
       this.temperatureListObservable.next(response);
-      this.loop();
-    });
+      this.loop(hostIp);
+    }, (error) => {console.log(error)});
   }
 
-  loop() {
+  loop(hostIp) {
     setTimeout(() => {
-      this.refreshAndLoop();
+      this.refreshAndLoop(hostIp);
     }, 60000);  // milliseconds
   }
 

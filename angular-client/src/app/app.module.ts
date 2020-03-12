@@ -12,6 +12,7 @@ import { TemperaturesService } from './services/temperatures.service';
 import {FormsModule} from '@angular/forms';
 import {DatePipe} from '@angular/common';
 import { NewSessionComponent } from './new-session/new-session.component';
+import {TransferHttpCacheModule} from '@nguniversal/common';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NewSessionComponent } from './new-session/new-session.component';
     NewSessionComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    TransferHttpCacheModule,
     ChartsModule,
     HttpClientModule,
     FormsModule
