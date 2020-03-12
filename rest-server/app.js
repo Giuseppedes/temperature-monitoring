@@ -4,6 +4,9 @@ const cors = require('cors');
 
 const app = express();
 
+const APP_DIR = '../angular-client/dist/angular-client';
+const PORT = 3000;
+
 app.use(cors());
 
 const pool = mariadb.createPool({
@@ -46,4 +49,14 @@ app.post('/api/new-session', (req, res) => {
         });
 });
 
-app.listen(3000);
+// Serve Angular Application
+// ---- SERVE STATIC FILES ---- //
+app.get('*.*', express.static(APP_DIR, {maxAge: '1y'}));
+
+// ---- SERVE APLICATION PATHS ---- //
+app.all('*', function (req, res) {
+    res.status(200).sendFile(`/`, {root: APP_DIR});
+});
+
+
+app.listen(PORT);
