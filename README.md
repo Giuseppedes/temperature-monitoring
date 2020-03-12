@@ -226,9 +226,12 @@ Do this step only if you see this error in phpmyadmin:
 ```
     @reboot sleep 60 && sh /home/pi/temperature-monitoring/schedule/launcher-py.sh >/home/pi/temperature-monitoring/schedule/logs/py.log 2>&1
     @reboot sh /home/pi/temperature-monitoring/schedule/launcher-node.sh >/home/pi/temperature-monitoring/schedule/logs/node.log 2>&1
+    @reboot sleep 90 && sh /home/pi/temperature-monitoring/schedule/ngrok-tunnel.sh >/home/pi/temperature-monitoring/schedule/logs/ngrok.log 2>&1
 ```
 
-(need to sleep 60 seconds in order to allow the startup of the database)
+Launcher-py.sh need to sleep 60 seconds before starting in order to allow the startup of the database.
+
+Only add the third instruction if you installed ngrok and if you want to create a tunnel http.
 
 ##### External Tutorial: [Raspberry Pi: Launch Python Script on Startup. By scottkildall CC BY-NC-SA](https://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/)
 
@@ -237,3 +240,13 @@ Do this step only if you see this error in phpmyadmin:
 - open port 80 in order to enable access to the Apache server through the internet
 
 - open port 3000 in order to enable access to the node.js server through the internet
+
+## http tunnel
+
+If you can't open ports on your router, you can create a tunnel http (e.g. with ngrok) in order to access the app.
+
+In my implementation I served the angular app with node.js so I can only use port 3000, then I opened a tunnel with
+
+    `$ ./ngrok http 3000`
+    
+I send the output of ngrok by email with msmtp, in this way I know the url to reach the server.
