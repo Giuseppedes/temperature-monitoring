@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
-  temperaturesEndpoint: ':3000/api/temperatures',
-  newSessionEndpoint: ':3000/api/new-session',
+  apiPort: '3000',
+  temperaturesEndpoint: '/api/temperatures',
+  newSessionEndpoint: '/api/new-session',
 };

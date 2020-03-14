@@ -1,23 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
+import {UrlUtilsService} from './url-utils.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionsService {
 
-  hostIp;
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private urlUtilsService: UrlUtilsService) { }
 
   newSession() {
-    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
-    // remove port number
-    if (this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5) > 0) {
-      this.hostIp = this.hostIp.substring(0, this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5));
-    }
-    return this.http.post(this.hostIp + environment.newSessionEndpoint, {});
+    const serviceBaseUrl = this.urlUtilsService.buildUrl(window.location.origin);  // origin = (RASPBERRY) WEB SERVER IP OR HOSTNAME
+    return this.http.post(serviceBaseUrl + environment.newSessionEndpoint, {});
   }
 }

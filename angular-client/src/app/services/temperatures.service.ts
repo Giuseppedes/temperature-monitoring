@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {Temperature} from '../models/temperature';
 import {Subject} from 'rxjs';
+import {UrlUtilsService} from './url-utils.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +12,11 @@ export class TemperaturesService {
 
   temperatureListObservable = new Subject<Temperature[]>();
 
-  hostIp;
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient, private urlUtilsService: UrlUtilsService) {}
 
   getAll() {
-    this.hostIp = window.location.origin;  // <- (RASPBERRY) WEB SERVER IP
-    // remove port number
-    if (this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5) > 0) {
-      this.hostIp = this.hostIp.substring(0, this.hostIp.indexOf(':', this.hostIp.indexOf('http:') + 5));
-    }
-    return this.http.get<Temperature[]>(this.hostIp + environment.temperaturesEndpoint);
+    const serviceBaseUrl = this.urlUtilsService.buildUrl(window.location.origin);  // origin = (RASPBERRY) WEB SERVER IP OR HOSTNAME
+    return this.http.get<Temperature[]>(serviceBaseUrl + environment.temperaturesEndpoint);
   }
 
   refreshAndLoop() {
