@@ -54,7 +54,7 @@ app.get('/api/sessions/:sessionId/temperatures', (req, res) => {
 });
 
 // insert a new session
-app.post('/api/new-session', (req, res) => {
+app.post('/api/sessions', (req, res) => {
     pool
         .query("INSERT INTO SESSIONS VALUES ()")
         .then(rows => {

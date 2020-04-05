@@ -7,7 +7,7 @@ export const environment = {
   apiPort: '3000',
   // temperaturesEndpoint: 'localhost:3000/api/temperatures',
   temperaturesEndpoint: '/api/temperatures',
-  newSessionEndpoint: '/api/new-session',
+  newSessionEndpoint: '/api/sessions',
 };
 
 /*
