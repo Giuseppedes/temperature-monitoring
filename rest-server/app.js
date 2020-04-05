@@ -32,7 +32,10 @@ app.get('/api/temperatures', (req, res) => {
 //return sessions
 app.get('/api/sessions', (req, res) => {
     pool
-        .query("SELECT SESSION_ID, MIN(TIME) AS FIRST_RECORD, MAX(TIME) AS LAST_RECORD FROM HISTORY GROUP BY SESSION_ID")
+        .query("SELECT S.ID, S.TIME AS CREATION_DATE, MIN(H.TIME) AS FIRST_TEMPERATURE, MAX(H.TIME) AS LAST_TEMPERATURE " +
+            "FROM SESSIONS S LEFT JOIN HISTORY H " +
+            "ON S.ID = H.SESSION_ID " +
+            "GROUP BY S.ID, S.TIME")
         .then(rows => {
             res.send(rows);
         })
