@@ -29,6 +29,31 @@ app.get('/api/temperatures', (req, res) => {
         });
 });
 
+//return sessions
+app.get('/api/sessions', (req, res) => {
+    pool
+        .query("SELECT SESSION_ID, MIN(TIME) AS FIRST_RECORD, MAX(TIME) AS LAST_RECORD FROM HISTORY GROUP BY SESSION_ID")
+        .then(rows => {
+            res.send(rows);
+        })
+        .catch(err => {
+            res.send(err);
+        });
+});
+
+//return the temperatures of a specific session
+app.get('/api/sessions/:sessionId/temperatures', (req, res) => {
+    pool
+        .query("SELECT id, time, temperature FROM HISTORY WHERE SESSION_ID = " + req.params.sessionId)
+        .then(rows => {
+            res.send(rows);
+        })
+        .catch(err => {
+            res.send(err);
+        });
+});
+
+// insert a new session
 app.post('/api/new-session', (req, res) => {
     pool
         .query("INSERT INTO SESSIONS VALUES ()")
