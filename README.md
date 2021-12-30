@@ -88,13 +88,21 @@ Compile and load [arduino/ds18b20/ds18b20.ino](https://github.com/Giuseppedes/te
 
 - Run:
 
+```shell
+sudo apt update
+sudo apt full-upgrade --fix-missing
+sudo systemctl reboot
+```
+
+and 
+
 ```sh
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install apache2 libapache2-mod-wsgi python-setuptools python-flask python-serial
+sudo apt-get install apache2 liobapache2-mod-php libapache2-mod-wsgi-py3 python-setuptools python3-flask python3-serial
 ```
 
-- `sudo nano /etc/apache2/sites-enabled/000-default` --> set 'All' to 'AllowOverride':
+- `sudo nano /etc/apache2/apache2.conf` --> set 'All' to 'AllowOverride':
 
 ```xml
      <Directory /var/www/>
