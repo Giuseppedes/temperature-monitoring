@@ -234,12 +234,13 @@ Do this step only if you see this error in phpmyadmin:
 ```
     @reboot sleep 60 && sh /home/pi/temperature-monitoring/schedule/launcher-py.sh >/home/pi/temperature-monitoring/schedule/logs/py.log 2>&1
     @reboot sh /home/pi/temperature-monitoring/schedule/launcher-node.sh >/home/pi/temperature-monitoring/schedule/logs/node.log 2>&1
+    @reboot sh /home/pi/temperature-monitoring/schedule/launcher-browser.sh >/home/pi/temperature-monitoring/schedule/logs/browser.log 2>&1
     @reboot sleep 90 && sh /home/pi/temperature-monitoring/schedule/ngrok-tunnel.sh >/home/pi/temperature-monitoring/schedule/logs/ngrok.log 2>&1
 ```
 
 Launcher-py.sh need to sleep 60 seconds before starting in order to allow the startup of the database.
 
-Only add the third instruction if you installed ngrok and if you want to create a tunnel http.
+Only add the ngrok instruction if you installed ngrok and if you want to create an http tunnel.
 
 ##### External Tutorial: [Raspberry Pi: Launch Python Script on Startup. By scottkildall CC BY-NC-SA](https://www.instructables.com/id/Raspberry-Pi-Launch-Python-script-on-startup/)
 
