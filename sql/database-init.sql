@@ -49,7 +49,7 @@ CREATE TABLE `HISTORY` (
   `ID` bigint(20) UNSIGNED NOT NULL,
   `TIME` datetime NOT NULL DEFAULT current_timestamp(),
   `TEMPERATURE` decimal(5,2) NOT NULL,
-  `SESSION_ID` bigint(20) NOT NULL,
+  `SESSION_ID` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
