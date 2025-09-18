@@ -145,6 +145,7 @@ sudo apt-get install vsftpd
 ```sql
     CREATE DATABASE TEMPERATURE;
     CREATE USER 'temperature'@'localhost' IDENTIFIED BY 'temperature';
+    GRANT ALL PRIVILEGES ON TEMPERATURE.* TO 'temperature'@'localhost';
     FLUSH PRIVILEGES;
     quit
 ```
@@ -153,11 +154,13 @@ sudo apt-get install vsftpd
 
 - Install mysql connector for python 3 with the command:
     
-    `pip3 install mysql-connector-python-rf `
+    `pip3 install mysql-connector-python-rf` or `pip3 install mysql-connector-python`
 
     (this seems to install the connector only for pi user --> `su root` and run again)
 
 - Create tables using the script [sql/database-init.sql](https://github.com/Giuseppedes/temperature-monitoring/blob/master/sql/database-init.sql "sql/database-init.sql")
+
+    `mysql -u temperature -p TEMPERATURE < sql/database-init.sql`
 
 ##### External Tutorial: [Setup a Raspberry Pi MYSQL Database. By Emmet](https://pimylifeup.com/raspberry-pi-mysql/)
 
